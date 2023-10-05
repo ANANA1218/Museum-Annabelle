@@ -2,6 +2,7 @@
 // extension ajouter en plus l'extension 
 import { StyleSheet, Text, View , Button , TextInput } from 'react-native'
 import React, { useState } from 'react'
+
 const FormCreate = () => {
 
  const [age, setAge]= useState ("");
@@ -10,6 +11,7 @@ const FormCreate = () => {
 
  const handleSubmit = ()=>{
     console.log(nom,age,email);
+    // ajouter dans firebase
  }
 
   return (
