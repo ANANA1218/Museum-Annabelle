@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import FormCreate from './composants/FormCreate';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import HomeScreen from './HomeScreen';
+import ImageScreen from './ImageScreen';
+import StatutScreen from './StatutScreen';
+import CustomSidebarMenu from './CustomSidebarMenu';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-     <FormCreate />
-    </View>
-  );
+const Drawer = createDrawerNavigator();
+
+const App = () => {
+    
+    return (
+        <NavigationContainer>
+            <Drawer.Navigator
+                drawerContent={(props) => <CustomSidebarMenu {...props} />}
+            >
+                <Drawer.Screen name='Home' component={HomeScreen} />
+                <Drawer.Screen name='Image' component={ImageScreen} />
+                <Drawer.Screen name='Status' component={StatutScreen} />
+            </Drawer.Navigator>
+        </NavigationContainer>
+    );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
