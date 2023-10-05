@@ -1,4 +1,6 @@
 import JOI from 'joi';
+import 'text-encoding-polyfill'
+
 
 // la librairie joi va permmettre d'effectuer des tests
 
