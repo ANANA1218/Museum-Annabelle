@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import db from '../../../config';
+import { useNavigation } from '@react-navigation/native';
+import { Link } from 'react-router-dom';
+import './GetAllpeinture.css'; // Import du fichier CSS
+import { Button } from 'react-native';
+
 
 const GetAllpeinture = () => {
     const [oeuvres, setOeuvres] = useState([]);
+    const navigation = useNavigation(); // Initialisez la navigation
+
 
     useEffect(() => {
         const fetchOeuvres = async () => {
@@ -29,7 +36,11 @@ const GetAllpeinture = () => {
     }
 
     return (
-        <div>
+        <div className="art-exhibition"> {/* Ajout de la classe pour le CSS */}
+           <Button
+                title="Aller à l'autre page"
+                onPress={() => navigation.navigate('OtherPage')} // Utilisez navigation.navigate
+            />
             <table>
                 <thead>
                     <tr>
