@@ -8,13 +8,13 @@ import { Button } from 'react-native';
 
 
 const GetAllUsers = () => {
-    const [Users, setUsers] = useState([]);
+    const [users, setUsers] = useState([]);
     const navigation = useNavigation(); // Initialisez la navigation
 
 
     useEffect(() => {
         const fetchOeuvres = async () => {
-            const oeuvresCollection = collection(db, "Users");
+            const oeuvresCollection = collection(db, "users");
             const snapshot = await getDocs(oeuvresCollection);
 
             const oeuvresData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -25,12 +25,12 @@ const GetAllUsers = () => {
     }, []);
 
     const handleDelete = async (id) => {
-        await deleteDoc(doc(db, "Users", id));
+        await deleteDoc(doc(db, "users", id));
         setUsers(prevState => prevState.filter(oeuvre => oeuvre.id !== id));
     }
 
     const handleEdit = async (id, field, value) => {
-        const oeuvreRef = doc(db, "Users", id);
+        const oeuvreRef = doc(db, "users", id);
         await updateDoc(oeuvreRef, { [field]: value });
         setUsers(prevState => prevState.map(oeuvre => oeuvre.id === id ? { ...oeuvre, [field]: value } : oeuvre));
     }
@@ -39,7 +39,7 @@ const GetAllUsers = () => {
         <div className="art-exhibition"> {/* Ajout de la classe pour le CSS */}
            <Button
                 title="Aller à l'autre page"
-                onPress={() => navigation.navigate('OtherPage')} // Utilisez navigation.navigate
+                onPress={() => navigation.navigate('PostUsers')} // Utilisez navigation.navigate
             />
             <table>
                 <thead>
@@ -52,7 +52,7 @@ const GetAllUsers = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {Users.map(oeuvre => (
+                    {users.map(oeuvre => (
                         <tr key={oeuvre.id}>
                             <td>{oeuvre.id}</td>
                             <td contentEditable onBlur={(e) => handleEdit(oeuvre.id, 'email', e.target.textContent)}>{oeuvre.email}</td>

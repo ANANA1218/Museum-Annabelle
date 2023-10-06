@@ -39,7 +39,7 @@ const GetAllpeinture = () => {
         <div className="art-exhibition"> {/* Ajout de la classe pour le CSS */}
            <Button
                 title="Aller à l'autre page"
-                onPress={() => navigation.navigate('OtherPage')} // Utilisez navigation.navigate
+                onPress={() => navigation.navigate('PostPeinture')} // Utilisez navigation.navigate
             />
             <table>
                 <thead>
