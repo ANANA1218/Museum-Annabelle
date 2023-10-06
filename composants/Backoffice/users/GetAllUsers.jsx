@@ -4,8 +4,7 @@ import db from '../../../config';
 import { useNavigation } from '@react-navigation/native';
 import { Link } from 'react-router-dom';
 import './GetAllUsers.css'; // Import du fichier CSS
-import { Button } from 'react-native';
-
+import { Button as PaperButton } from 'react-native-paper';
 
 const GetAllUsers = () => {
     const [users, setUsers] = useState([]);
@@ -37,10 +36,14 @@ const GetAllUsers = () => {
 
     return (
         <div className="art-exhibition"> {/* Ajout de la classe pour le CSS */}
-           <Button
-                title="Aller à l'autre page"
-                onPress={() => navigation.navigate('PostUsers')} // Utilisez navigation.navigate
-            />
+              <PaperButton
+                mode="contained"
+                onPress={() => navigation.navigate('PostUsers')}
+                style={{ marginBottom: 10 }}
+                className="button"
+            >
+                Ajouter un nouveau User
+            </PaperButton>
             <table>
                 <thead>
                     <tr>
