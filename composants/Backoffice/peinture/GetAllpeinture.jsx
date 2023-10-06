@@ -62,8 +62,8 @@ const GetAllpeinture = () => {
                             <td contentEditable onBlur={(e) => handleEdit(oeuvre.id, 'description', e.target.textContent)}>{oeuvre.description}</td>
                             <td contentEditable onBlur={(e) => handleEdit(oeuvre.id, 'image', e.target.textContent)}>{oeuvre.image}</td>
                             <td contentEditable onBlur={(e) => handleEdit(oeuvre.id, 'auteur', e.target.textContent)}>{oeuvre.auteur}</td>
-                            <td contentEditable onBlur={(e) => handleEdit(oeuvre.id, 'date_creation', e.target.textContent)}>{oeuvre.date_creation}</td>
-                            <td contentEditable onBlur={(e) => handleEdit(oeuvre.id, 'user_id', e.target.textContent)}>{oeuvre.user_id}</td>
+                            <td contentEditable onBlur={(e) => handleEdit(oeuvre.id, 'date_creation', e.target.textContent)}>{oeuvre.dateCreation}</td>
+                            <td contentEditable onBlur={(e) => handleEdit(oeuvre.id, 'user_id', e.target.textContent)}>{oeuvre.userId}</td>
                             <td><button onClick={() => handleDelete(oeuvre.id)}>Supprimer</button></td>
                         </tr>
                     ))}
