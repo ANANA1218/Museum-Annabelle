@@ -8,6 +8,11 @@ import PeintureList from '../peinture/PeintureList';
 import GetAllpeinture from './peinture/GetAllpeinture';
 import GetAllUsers from './users/GetAllUsers';
 
+import PeintureById from '../../composants/peinture/PeintureById';
+import PostPeinture from './peinture/PostPeinture';
+import PostUsers from './users/PostUsers';
+
+
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
@@ -126,3 +131,9 @@ export default function BottomTabNavigator() {
     </Tab.Navigator>
   );
 }
+
+export const Routes = {
+  PeintureById: PeintureById,
+  PostPeinture: PostPeinture,
+  PostUsers: PostUsers,
+};

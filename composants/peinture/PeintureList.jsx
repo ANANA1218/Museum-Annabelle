@@ -38,9 +38,9 @@ const PeintureList = () => {
             <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                 {oeuvres.map(oeuvre => (
                     <Card key={oeuvre.id} style={{ margin: 8, width: '30%' }}>
-                        <Card.Cover source={{ uri: oeuvre.image }} onPress={() => navigation.navigate(`Oeuvre/${oeuvre.id}`)} />
+                        <Card.Cover source={{ uri: oeuvre.image }}  />
                         <Card.Content>
-                            <Title>{oeuvre.nom}</Title>
+                            <Title onPress={() => navigation.navigate('OeuvreDetail', { id: oeuvre.id })}>{oeuvre.nom}</Title>
                            
                         </Card.Content>
                     </Card>
