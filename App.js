@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import FormCreate from './composants/FormCreate';
+import { NavigationContainer } from '@react-navigation/native';
+import BottomTabNavigator from './composants/Backoffice/BottomTabNavigator';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-     <FormCreate />
-    </View>
+    <NavigationContainer>
+    <BottomTabNavigator />
+   </NavigationContainer>
+   
   );
 }
 
