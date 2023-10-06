@@ -6,6 +6,7 @@ import HomeScreen from './HomeScreen';
 import SettingsScreen from './SettingsScreen';
 import PeintureList from '../peinture/PeintureList';
 import GetAllpeinture from './peinture/GetAllpeinture';
+import GetAllUsers from './users/GetAllUsers';
 
 const Tab = createBottomTabNavigator();
 
@@ -73,7 +74,7 @@ export default function BottomTabNavigator() {
  
        <Tab.Screen
         name="Liste Users ADMIN"
-        component={HomeScreen}
+        component={GetAllUsers}
         options={{
           tabBarLabel: 'Liste Users ADMIN',
           tabBarIcon: ({ color, size }) => {

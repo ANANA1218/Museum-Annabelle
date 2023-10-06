@@ -12,6 +12,9 @@ export const schemaOeuvres = JOI.object({
 
 
 
-
-
-
+export const schemaUsers = JOI.object({
+    email : JOI.string().min(3).max(255).required(),
+    password: JOI.string().min(3).required(),
+    role: JOI.string().min(3).max(255).required(),
+   
+});
