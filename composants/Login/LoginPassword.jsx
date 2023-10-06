@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigation } from '@react-navigation/native'; // Importez la fonction de navigation
 
 const styles = {
   container: {
@@ -16,18 +18,26 @@ const styles = {
   },
 };
 
-const LoginForm = () => {
+const LoginPassword = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigation = useNavigation(); // Initialisez la navigation
 
-  const handleLogin = () => {
-    // Ajoutez votre logique de connexion ici
-    console.log('Email:', email);
-    console.log('Password:', password);
+  const handleLogin = async () => {
+    try {
+      const auth = getAuth();
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log('Connecté avec succès');
+      
+      // Rediriger vers BottomTabNavigator après une connexion réussie
+      navigation.navigate('Main');
+    } catch (error) {
+      console.error('Erreur de connexion:', error);
+    }
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         label="Email"
         value={email}
@@ -46,4 +56,4 @@ const LoginForm = () => {
   );
 }
 
-export default LoginForm;
+export default LoginPassword;
