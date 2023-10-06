@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View, Button, TextInput, ImageBackground } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
+import { TextInput, Button } from 'react-native-paper';
 import { schemaOeuvres } from '../../../verif/oeuvres';
 import db from '../../../config';
 import { collection, addDoc } from 'firebase/firestore';
 import * as ImagePicker from 'expo-image-picker';
-
 
 const PostPeinture = () => {
   const [nom, setNom] = useState("");
@@ -15,83 +15,83 @@ const PostPeinture = () => {
   const [userId, setUserId] = useState("");
 
   const handleSubmit = () => {
-      console.log(nom, description, image, auteur, dateCreation, userId);
+    console.log(nom, description, image, auteur, dateCreation, userId);
 
-      const oeuvre = {
-          nom,
-          description,
-          image,
-          auteur,
-          dateCreation: dateCreation,
-          userId: userId
-      };
+    const oeuvre = {
+      nom,
+      description,
+      image,
+      auteur,
+      dateCreation: dateCreation,
+      userId: userId
+    };
 
-      const { error } = schemaOeuvres.validate(oeuvre, { abortEarly: false });
+    const { error } = schemaOeuvres.validate(oeuvre, { abortEarly: false });
 
-      console.log(error);
+    console.log(error);
 
-      if (!error) {
-          addDoc(collection(db, "oeuvres"), oeuvre);
-      }
+    if (!error) {
+      addDoc(collection(db, "oeuvres"), oeuvre);
+    }
   }
 
   return (
-      <View>
-          <Text>Créer une nouvelle oeuvre</Text>
-          <TextInput
-              placeholder="nom"
-              onChangeText={text => setNom(text)}
-              value={nom}
-              style={styles.input}
-          />
-          <TextInput
-              placeholder="description"
-              onChangeText={text => setDescription(text)}
-              value={description}
-              style={styles.input}
-          />
-          <TextInput
-              placeholder="image"
-              onChangeText={text => setImage(text)}
-              value={image}
-              style={styles.input}
-          />
-          <TextInput
-              placeholder="auteur"
-              onChangeText={text => setAuteur(text)}
-              value={auteur}
-              style={styles.input}
-          />
-          <TextInput
-              placeholder="date de création"
-              onChangeText={text => setDateCreation(text)}
-              value={dateCreation}
-              style={styles.input}
-          />
-          <TextInput
-              placeholder="user id"
-              onChangeText={text => setUserId(text)}
-              value={userId}
-              style={styles.input}
-          />
-          <Button title="créer" onPress={handleSubmit} />
-      </View>
+    <View style={styles.container}>
+      <TextInput
+        label="Nom"
+        value={nom}
+        onChangeText={text => setNom(text)}
+        style={styles.input}
+      />
+      <TextInput
+        label="Description"
+        value={description}
+        onChangeText={text => setDescription(text)}
+        style={styles.input}
+      />
+      <TextInput
+        label="Image"
+        value={image}
+        onChangeText={text => setImage(text)}
+        style={styles.input}
+      />
+      <TextInput
+        label="Auteur"
+        value={auteur}
+        onChangeText={text => setAuteur(text)}
+        style={styles.input}
+      />
+      <TextInput
+        label="Date de création"
+        value={dateCreation}
+        onChangeText={text => setDateCreation(text)}
+        style={styles.input}
+      />
+      <TextInput
+        label="User ID"
+        value={userId}
+        onChangeText={text => setUserId(text)}
+        style={styles.input}
+      />
+      <Button mode="contained" onPress={handleSubmit} style={styles.button}>
+        Créer
+      </Button>
+    </View>
   )
 }
 
-
 export default PostPeinture;
 
-
 const styles = StyleSheet.create({
-  input: {
-    borderColor: 'black',
-    padding: 10,
-    borderWidth: 2,
-    marginVertical: 10,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 16,
   },
-  imagePreview: {
-    width: 100,
-    height: 100,
+  input: {
+    marginBottom: 10,
+  },
+  button: {
+    marginTop: 20,
   },
 });
